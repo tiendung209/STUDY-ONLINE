@@ -1,9 +1,10 @@
-name :CI/CD Deploy Docker App
+name: CI/CD Deploy Docker App
 
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,10 +15,9 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          port :24700
+          port: 24700
           script: |
             cd /var/www/STUDY-ONLINE
-
             git pull origin main
             docker compose down
             docker compose up -d --build
@@ -25,9 +25,6 @@ jobs:
             docker compose logs --tail=50
             curl -i https://dungnguyensec77.cloud
             curl -k https://dungnguyensec77.cloud
-
-
-
 
 
 
