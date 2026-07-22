@@ -1,0 +1,16 @@
+SCRIPT NÀY GIÚP ÍCH GÌ
+1.Tự động hóa kiểm tra nhanh hệ thống sau deploy mà không cần lệnh thủ công
+2.tiết kiệm thời gian
+3.phát hiện sự cố nhanh ngay sau khi pull code
+
+NẾU MỞ RỘNG SẼ THÊM GÌ
+1.Thêm kiểm tra CPU/RAM df-h free-h nếu ram quá 90% đưa ra cảnh báo
+2.tự động phục hồi tự động chạy ệnh docker restart để khởi động lại container
+3.Cảnh báo tự động nếu phát hiện bất cứ service nào sập
+
+5 LỖI KĨ THUÂT CÓ THỂ PHÁT HIỆN
+1.Lỗi container hoặc service bị sập sẽ được phát hiện qua docker ps
+2.lỗi cổng port chưa mở hoặc xung đọt :ss-tuln
+3.Lỗi cấu hình web server 502 :curl
+4.Lỗi kết nối CSDL và thiếu biến .env kiến app crash :docker logs
+5.Lối sai lệch thời gian máy chủ hỏng TOKEN/SSL :date
