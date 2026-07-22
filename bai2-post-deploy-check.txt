@@ -1,0 +1,16 @@
+TRÌNH TỰ KIỂM TRA
+1.docker compose ps:kiểm tra trạng thái container
+2.ss-tuln | grep :8080:kiểm tra port có đang chạy không
+3.docker conpose logs web:kiểm tra logs của app
+4.curl -i http://localhost:8080:kiểm tra response, xem phản hồi từ dịch vụ local                                                                                                             
+5.curl -i http://localhost:8080/health: kiểm tra health endpoint, độ sẵn sàng ứn                                                                                                             g dụng
+
+NGUYÊN NHÂN GÂY LỖI CHẬP CHỜN
+1.Mất kết nối database :do só lượng database bị quá tải làm cho request bị rejec                                                                                                             t
+2.Thiếu RAM/CPU:Container giới hạn làm ứng dụng giật lag
+3.Lỗi ở lớp reverse proxy: nginx chuyển request tới app nhưng app xử lí lâu làm                                                                                                              vượt thời gian timeout
+4.app chưa sẵn sàng mà nginx đã nhận trafic
+5.xung đột cache hoặc session giữa các container
+
+KẾT LUẬN
+Lỗi này không phải bị ở lớp CI/CD mà có thể do lớp application và database/rever                                                                                                             se proxy
