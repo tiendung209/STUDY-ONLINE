@@ -1,0 +1,8 @@
+Em Cài đặt Kubernetes lightweight bằng k3s
+Em Cài đặt trực tiếp trên môi trường hệ điều hành Ubuntu Linux chạy bằng máy ảo VMWARE
+GIẢI THÍCH CÁC KHÁI NIỆM CƠ BẢN TRONG K8S
+    Cluster là một cụm máy tham gia vào môi trường k8s nhìn hệ thống như 1 server đơn lẻ
+    Node đơn giản là một máy trong Cluster
+                  là nơi pod thực sự chạy
+                  là đơn vị facture nơi workload chạy trong Cluster
+    
