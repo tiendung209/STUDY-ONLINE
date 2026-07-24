@@ -1,8 +1,20 @@
-Em Cài đặt Kubernetes lightweight bằng k3s
+Em Cài đặt Kubernetes bằng k3s
 Em Cài đặt trực tiếp trên môi trường hệ điều hành Ubuntu Linux chạy bằng máy ảo VMWARE
 GIẢI THÍCH CÁC KHÁI NIỆM CƠ BẢN TRONG K8S
     Cluster là một cụm máy tham gia vào môi trường k8s nhìn hệ thống như 1 server đơn lẻ
     Node đơn giản là một máy trong Cluster
                   là nơi pod thực sự chạy
                   là đơn vị facture nơi workload chạy trong Cluster
-    
+                  Có thể hiểu đơn giản nhiều trường hợp 1 node=1 server
+    POD là đơn vị triển khai nhỏ nhất trong k8s có thể hiểu đơn giản trong nhiều trường hợp pod=Container
+    Deployment là bản mô tả các ứng dụng phải được triển khai, dùng để quản lí pod, tạo lại pod khi bị lỗi, cập nhật
+    Service trong k8s là lớp truy cập ổn định tới 1 nhóm pod trong k8s
+    Ingress là nơi vào k8s,nhận request rồi chuyển đến service từ domain và url
+            là tài nguyên quản lí truy cập http/https tù bên ngoài 
+
+5 điểm khác nhau giữa docker compose và k8s
+-QUY MÔ:Docker compose phù hợp local/dev/lab còn k8s phù hợp với doanh nghiệp có quy mô lớn
+-PHẠM VI:Docker compose tập trung trên 1 host còn k8s orchestration trên nhiều node 
+-KHẢ NĂNG TỰ PHỤC HỒI:Giả sử cont sập thì docker compose có thể phục hồi nhưng server thì không thể, còn nếu một máy trong cluster bị sập thì k8s sẽ tự động chuyển container sang máy khác
+-KHẢ NĂNG SCALING(TỰ ĐỘNG MỞ RỘNG):docker compose phải thao tác thủ công còn k8s tự động tăng giảm số lương CPU/RAM
+-ĐỘ PHƯC TẠP:docker compose đơn giản chỉ cần file yml còn k8s cần thiết lập nhiều tài nguyên như pod service, deployment,Ingress
