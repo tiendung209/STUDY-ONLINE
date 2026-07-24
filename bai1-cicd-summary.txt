@@ -4,7 +4,6 @@
 
 2. Tóm tắt luồng CI/CD Workflow:
    - Tự động kích hoạt (trigger) khi có commit mới được push lên nhánh main.
-   - GitHub Runner thực hiện checkout mã nguồn mới nhất.
    - Kết nối SSH an toàn tới Server IP (202.92.7.123) qua port 24700 bằng SSH Private Key (lưu trong GitHub Secrets).
    - Tự động thực thi các lệnh trên Server:
      + cd /var/www/STUDY-ONLINE
