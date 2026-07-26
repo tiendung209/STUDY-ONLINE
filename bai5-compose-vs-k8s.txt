@@ -1,1 +1,21 @@
-MAI ROI LAM tiep
+PHẦN 3 SO SÁNH THỰC TÊ:
+*Khi nào nên dùng docker compose là đủ
+-dự án giai đoàn đầu lượn truy cập thấp
+-team ít người, chưa chuyên sâu hạ tầng
+-ứng dụng đơn giản,độ sẵn sàng chưa cao
+*khi nên dùng k8s
+-hệ thống lớn,lượng truy cập cần tự động mở rộng(scaling)
+-triền khai nhiều môi trường đồng nhất và tự động
+-hàng chục,hàng trăm service giao tiếp phức tạp
+
+RỦI RO MÀ HỆ THỐNG LỚN VẪN GIỮ TƯ DUY"MỘT SERVER+1COMPOSE STACK"
+-server gặp sự cố toàn bộ hệ thống chết
+-không có khả năng mở rongọ
+-cập nhật phiên bản mới gây gián đoạn dịch vụ do phải tạo lại cont
+-quản lí tài nguyên kém không có cơ chế phân bổ hàng trâm cont trên cùng host
+-thiếu khả năng tự phục hồi nếu cont bị treo mà không thoát compose kh thể tự phát hiện và khởi động lại như k8s
+
+3 khó khăn khi chuyển đổi
+1. Team dev và ops cần nhiều thời gian để học khái niệm của k8s
+2.chi phí tăng :cần dùng nhiều server và cấu hình hạ tầng mạng phức tạp hơn
+3.khó khăn trong việc debug và giám sát:khi có lỗi tìm kiếm log của request giữa nhiều node/pod khó hơn việc grep log trên 1 server duy nhất
