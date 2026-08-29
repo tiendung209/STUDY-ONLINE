@@ -22,7 +22,7 @@ class AuthService {
                 });
         } catch (error: any) {
             console.error(error)
-            FailMessage("Đăng nhập không thành công", messageConfig(error.response.data.message))
+            FailMessage("Đăng nhập không thành công", messageConfig(error?.response?.data?.message || error.message || "Lỗi kết nối server"))
         } finally {
             setLoading(false);
         }
@@ -50,8 +50,9 @@ class AuthService {
                     return response;
                 });
         }
-        catch (error) {
+        catch (error: any) {
             console.error(error)
+            FailMessage("Lấy thông tin không thành công", messageConfig(error?.response?.data?.message || error.message || "Lỗi kết nối server"))
         } finally {
             setLoading(false);
         }
@@ -67,8 +68,9 @@ class AuthService {
                     return response;
                 });
         }
-        catch (error) {
+        catch (error: any) {
             console.error(error)
+            FailMessage("Lấy danh sách khóa học không thành công", messageConfig(error?.response?.data?.message || error.message || "Lỗi kết nối server"))
         } finally {
             setLoading(false);
         }
@@ -91,7 +93,7 @@ class AuthService {
                 });
         } catch (error: any) {
             console.error(error)
-            FailMessage("Cập nhật không thành công", "Vui lòng kiểm tra thông tin")
+            FailMessage("Cập nhật không thành công", messageConfig(error?.response?.data?.message || error.message || "Vui lòng kiểm tra thông tin"))
         } finally {
             setLoading(false);
         }
@@ -108,7 +110,7 @@ class AuthService {
                 return response;
             });
         } catch (error: any) {
-            FailMessage("Đăng nhập không thành công", messageConfig(error.response.data.message))
+            FailMessage("Đăng ký không thành công", messageConfig(error?.response?.data?.message || error.message || "Lỗi kết nối server"))
             console.error(error)
         } finally {
             setLoading(false);
@@ -116,6 +118,7 @@ class AuthService {
     }
 
     async changePassword(data: object, onBack: Function, setLoading: Function) {
+        setLoading(true)
         try {
             return await RequestService.put(Endpoint.Auth.ChangePassword,
                 { ...data },
@@ -126,72 +129,12 @@ class AuthService {
                 return response;
             });
         } catch (error: any) {
-            FailMessage("Thay đổi mật khẩu không thành công", messageConfig(error.response.data.message))
+            FailMessage("Thay đổi mật khẩu không thành công", messageConfig(error?.response?.data?.message || error.message || "Lỗi kết nối server"))
             console.error(error)
         } finally {
             setLoading(false);
         }
     }
-
-    // async verifyEmail(token, setLoading, callBack) {
-    //     setLoading(true)
-    //     try {
-    //         return await RequestService.post(`${apiRoutes.common.auth.verify_email}/${token}`).then(
-    //             (response) => {
-    //                 if (response) {
-    //                     SuccessMessage("Xác thực Email thành công")
-    //                     return response;
-    //                 }
-    //             });
-    //     }
-    //     catch (error) {
-    //         FailMessage("Xác thực không thành công", "")
-    //         console.error(error)
-    //     } finally {
-    //         setLoading(false);
-    //         callBack()
-    //     }
-    // }
-
-    // async forgotPassword(email, setLoading) {
-    //     setLoading(true)
-    //     try {
-    //         return await RequestService.post(`${apiRoutes.common.auth.forgot_password}?email=${email}`,
-    //             {},
-    //         ).then((response) => {
-    //             if (response) {
-    //                 setLoading(false)
-    //                 SuccessMessage("Gửi Email thành công", "Yêu cầu thiết lập lại mật khẩu của bạn gửi thành công. Kiểm tra Email để thiết lập lại mật khẩu")
-    //                 return response;
-    //             }
-    //         });
-    //     } catch (error) {
-    //         FailMessage("Gửi Email không thành công", "Kiểm tra lại thông tin Email")
-    //         console.error(error)
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
-
-    // async resetPassword(email, token, setLoading, setIsSuccessDialog) {
-    //     setLoading(true)
-    //     try {
-    //         return await RequestService.post(`${apiRoutes.common.auth.reset_password}?newPassword=${email}&token=${token}`,
-    //             {},
-    //         ).then(response => {
-    //             setLoading(false)
-    //             SuccessMessage("Thay đổi mật khẩu thành công", "")
-    //             setIsSuccessDialog(true)
-    //             return response;
-    //         });
-    //     } catch (error) {
-    //         FailMessage("Thay đổi mật khẩu không thành công", "Kiểm tra lại thông tin")
-    //         console.error(error)
-    //         setIsSuccessDialog(false)
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
 
 }
 
